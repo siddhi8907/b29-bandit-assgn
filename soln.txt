@@ -1,0 +1,137 @@
+# Level-0
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+
+# Level-0 to Level-1
+password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+cat readme
+
+# Level-1 to Level-2
+password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+pass full path or use  - - to show end of options
+
+# Level-2 to Level-3
+password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+use file\ name or 'file name'
+
+# Level-3 to Level-4
+password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+ls -a to see all hidden files
+
+# Level-4 to Level-5
+password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+find -type f -exec file {} +
+this helps us to see all the file types
+
+# Level-5 to Level-6
+password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+find -type f -size 1033c ! -executable
+this puts all the conditions
+
+# Level-6 to Level-7
+password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+use -user and -group tags
+when finding in server put find / instead of find . as it will only search in current directory
+to remove all permission denied ones: Add 2>/dev/null to the end
+
+# Level-7 to Level-8
+password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+grep millionth data.txt
+
+# Level-8 to Level-9
+password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+sort data.txt | uniq -u
+sort arranges in ascending order'
+uniq -u shows only unique lines
+uniq -d shows only duplicate
+
+# Level-9 to Level-10
+password: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+grep -a '===='data.txt (finds text in binary files)
+strings data.txt | grep === : strings filters out the "junk" and only shows sequences of 4 or more printable characters
+
+# Level-10 to Level-11
+password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+base64 --decode data.txt
+
+# level-11 to Level-12
+password: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+using g?G in vim editor
+
+# Level-12 to Level-13
+password: FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+so basically we cannot make a dir in normal home part so we use mktemp -d to create a dir in tmp folder
+now we convert it first using {xxd -r data.txt > new} and save the encoded one in a new file
+Now we have to decompress it many times
+it could be 3 types of file gzip, bzip2, tar
+so first rename the file accordingly like .gz .bz2 .tar
+and then use fn gzip -d new new.gz or bzip2 -d or tar -xf and check file type and check recursively
+
+# Level-13 to Level-14
+password: MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+so basically we use ssh -i file.key bandit14@host -p 2220
+but the catch is that we can't do it from inside the level so I saved the key in some outside file and then did it from outside
+also we have to change the permissions so that it's not too open
+
+# Level-14 to Level-15
+password: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+so basically we send the file using: nc localhost 30000
+so we can use cat file | nc localhost 30000
+nc [ip-address] [port]
+
+# Level-15 to Level-16
+password: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+openssl s_client -connect localhost:30001
+
+# Level-16 to Level-17
+password: rsa key
+nmap -p 31000-32000 localhost
+then check the available ones
+nmap -sV -p [ports] localhost
+then send to the ssl one
+openssl s_client -connect localhost:[port]
+and then we get the rsa key so we save it in an outside file change permission then use ssh -i
+
+#Level-17 to Level-18
+password: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+using diff file_1 file_2
+
+# Level-18 to Level-19
+password: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+using ssh bandit18@[ip] -p 2220 cat readme 
+bypasses the running of .bashrc and just directly outputs the readme
+
+# Level-19 to Level-20
+password: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+run ls-l to find a file with permission s
+then run it
+./bandit20-do cat /etc/bandit_pass/bandit20
+runs the command as that user
+
+# Level-20 to Level-21
+password: EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+& makes the command run in the background
+you start the connection with echo "pswd" | nc -l -p 1234 &
+and connect with ./suconnect 1234
+here 1234 can be any port
+
+# Level-21 to Level-22
+password: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+so we basically find the file and do cat bandit22_file and see what it is doing so it is making some changes to other file
+so we go to the location of that file and then check it
+
+# Level-22 to Level-23
+password: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+first we find cron file then we see which file it is rebooting then we go to that
+now in this file we run the command as it is with bandit23 in place of usewr name
+then cat the file with target instead of variable
+
+# Level-23 to Level-24
+password: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+so now we see the file in cron so it is basically executing every file in a folder
+so now we make a script which copies the password into a new file and then the script with this in code is placed in that particular folder
+and also remember to keep all permissions open
+
+
+
+
+
