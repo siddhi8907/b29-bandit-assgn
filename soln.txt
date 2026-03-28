@@ -131,6 +131,13 @@ so now we see the file in cron so it is basically executing every file in a fold
 so now we make a script which copies the password into a new file and then the script with this in code is placed in that particular folder
 and also remember to keep all permissions open
 
+# Level-24 to level-25
+password: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+we write a shell script with a for loop that tries all numbers from 0000 to 9999 with the password
+so then we channel it into the host
+./file | nc localhost 30002
+
+
 
 
 
